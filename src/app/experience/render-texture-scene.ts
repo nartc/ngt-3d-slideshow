@@ -79,9 +79,7 @@ const ratioScale = Math.min(1.2, Math.max(0.5, window.innerWidth / 1920));
 					}"
 				/>
 			</ngts-accumulative-shadows>
-			<ngts-environment
-				[options]="{ blur: 0.8, background: true, preset: 'studio' }"
-			>
+			<ngts-environment [options]="{ blur: 0.8, background: true }">
 				<ng-template>
 					<ngt-mesh [scale]="15">
 						<ngt-sphere-geometry />
