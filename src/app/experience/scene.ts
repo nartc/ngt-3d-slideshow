@@ -35,7 +35,7 @@ extend(THREE);
 
 		<app-camera-handler [slideDistance]="slideDistance" />
 
-		<!--		MAIN WORLD-->
+		<!-- MAIN WORLD-->
 		<ngt-group>
 			<ngt-mesh #sphere [position]="[0, viewport().height / 2 + 1.5, 0]">
 				<ngt-sphere-geometry *args="[1, 32, 32]" />
@@ -81,7 +81,7 @@ extend(THREE);
 				fadeStrength: 5,
 			}"
 		/>
-		<!--		END	MAIN WORLD-->
+		<!-- END MAIN WORLD-->
 
 		@for (scene of scenes; track scene.name) {
 			<ngt-mesh
@@ -89,6 +89,7 @@ extend(THREE);
 			>
 				<ngt-plane-geometry *args="[viewport().width, viewport().height]" />
 				<ngt-mesh-basic-material [toneMapped]="false">
+					<!-- attaching to "map" property on the material by default-->
 					<ngts-render-texture>
 						<app-render-texture-scene *renderTextureContent [scene]="scene" />
 					</ngts-render-texture>
