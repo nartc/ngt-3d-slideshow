@@ -17,6 +17,7 @@
 		"@angular/platform-browser": "^18.0.0",
 		"@angular/platform-browser-dynamic": "^18.0.0",
 		"@angular/router": "^18.0.0",
+		"@monogrid/gainmap-js": "^3.0.5",
 		"angular-three": "^2.0.0-beta.245",
 		"angular-three-soba": "^2.0.0-beta.245",
 		"ngxtension": "^3.5.5",
@@ -31,8 +32,11 @@
 		"@angular/cli": "^18.0.7",
 		"@angular/compiler-cli": "^18.0.0",
 		"@types/three": "^0.166.0",
+		"autoprefixer": "^10.4.19",
+		"postcss": "^8.4.39",
 		"prettier": "^3.3.2",
 		"prettier-plugin-organize-imports": "^4.0.0",
+		"tailwindcss": "^3.4.4",
 		"typescript": "~5.4.2"
 	},
 	"prettier": {
