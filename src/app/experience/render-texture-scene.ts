@@ -45,9 +45,8 @@ const ratioScale = Math.min(1.2, Math.max(0.5, window.innerWidth / 1920));
 					autoRotateSpeed: 0.5,
 				}"
 			/>
-			@if (model(); as model) {
-				<ngt-primitive *args="[model]" [parameters]="{ scale: ratioScale }" />
-			}
+
+			<ngt-primitive *args="[model()]" [parameters]="{ scale: ratioScale }" />
 
 			<ngt-ambient-light [intensity]="0.1 * Math.PI" color="pink" />
 			<ngts-accumulative-shadows
@@ -159,7 +158,7 @@ export class RenderTextureScene {
 	private gltf = injectGLTF(() => this.scene().path);
 	model = computed(() => {
 		const gltf = this.gltf();
-		if (!gltf) return;
+		if (!gltf) return null;
 		const model = gltf.scene;
 		model.traverse((child) => {
 			if ((child as Mesh).isMesh) {
