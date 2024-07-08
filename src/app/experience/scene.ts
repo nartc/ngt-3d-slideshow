@@ -81,6 +81,7 @@ extend(THREE);
 				fadeStrength: 5,
 			}"
 		/>
+		<!--		END	MAIN WORLD-->
 
 		@for (scene of scenes; track scene.name) {
 			<ngt-mesh

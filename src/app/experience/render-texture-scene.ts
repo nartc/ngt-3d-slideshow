@@ -46,10 +46,10 @@ const ratioScale = Math.min(1.2, Math.max(0.5, window.innerWidth / 1920));
 				}"
 			/>
 			@if (model(); as model) {
-				<ngt-primitive *args="[model]" [scale]="ratioScale" />
+				<ngt-primitive *args="[model]" [parameters]="{ scale: ratioScale }" />
 			}
 
-			<ngt-ambient-light [intensity]="0.1" color="pink" />
+			<ngt-ambient-light [intensity]="0.1 * Math.PI" color="pink" />
 			<ngts-accumulative-shadows
 				[options]="{
 					frames: 100,
@@ -64,7 +64,7 @@ const ratioScale = Math.min(1.2, Math.max(0.5, window.innerWidth / 1920));
 					[options]="{
 						amount: 4,
 						radius: 9,
-						intensity: 0.8,
+						intensity: 0.8 * Math.PI,
 						ambient: 0.25,
 						position: [10, 5, 15],
 					}"
@@ -73,7 +73,7 @@ const ratioScale = Math.min(1.2, Math.max(0.5, window.innerWidth / 1920));
 					[options]="{
 						amount: 4,
 						radius: 5,
-						intensity: 0.5,
+						intensity: 0.5 * Math.PI,
 						position: [-5, 5, 15],
 						bias: 0.001,
 					}"
@@ -97,7 +97,7 @@ const ratioScale = Math.min(1.2, Math.max(0.5, window.innerWidth / 1920));
 							form: 'rect',
 							intensity: 1,
 							color: 'red',
-							scale: $any([3, 5]),
+							scale: [3, 5],
 							target: [0, 0, 0],
 						}"
 					/>
@@ -107,7 +107,7 @@ const ratioScale = Math.min(1.2, Math.max(0.5, window.innerWidth / 1920));
 							form: 'circle',
 							intensity: 1,
 							color: 'green',
-							scale: $any([2, 5]),
+							scale: [2, 5],
 							target: [0, 0, 0],
 						}"
 					/>
@@ -117,7 +117,7 @@ const ratioScale = Math.min(1.2, Math.max(0.5, window.innerWidth / 1920));
 							form: 'ring',
 							intensity: 0.5,
 							color: 'orange',
-							scale: $any([10, 5]),
+							scale: [10, 5],
 							target: [0, 0, 0],
 						}"
 					/>
@@ -127,7 +127,7 @@ const ratioScale = Math.min(1.2, Math.max(0.5, window.innerWidth / 1920));
 							form: 'rect',
 							intensity: 1,
 							color: 'purple',
-							scale: $any([10, 5]),
+							scale: [10, 5],
 							target: [0, 0, 0],
 						}"
 					/>
@@ -149,6 +149,7 @@ const ratioScale = Math.min(1.2, Math.max(0.5, window.innerWidth / 1920));
 	],
 })
 export class RenderTextureScene {
+	Math = Math;
 	DEG2RAD = MathUtils.DEG2RAD;
 	BackSide = BackSide;
 	ratioScale = ratioScale;
@@ -168,7 +169,6 @@ export class RenderTextureScene {
 				child.receiveShadow = true;
 			}
 		});
-
 		return model;
 	});
 }
