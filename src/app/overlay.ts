@@ -63,11 +63,13 @@ import { scenes, slide } from "./state";
 			<div
 				class="bg-gradient-to-t from-white/90 pt-20 pb-10 p-4 flex items-center flex-col text-center"
 			>
+				@let slide = scenes[displaySlide()];
+				
 				<h1 class="text-5xl font-extrabold">
-					{{ scenes[displaySlide()].name }}
+					{{ slide.name }}
 				</h1>
 				<p class="text-opacity-60 italic">
-					{{ scenes[displaySlide()].description }}
+					{{ slide.description }}
 				</p>
 				<div class="flex items-center gap-12 mt-10">
 					<div class="flex flex-col items-center">
@@ -87,7 +89,7 @@ import { scenes, slide } from "./state";
 								/>
 							</svg>
 							<p class="font-semibold text-3xl">
-								{{ scenes[displaySlide()].price.toLocaleString() }}
+								{{ slide.price.toLocaleString() }}
 							</p>
 						</div>
 						<p class="text-sm opacity-80">After Federal Tax Credit</p>
@@ -109,7 +111,7 @@ import { scenes, slide } from "./state";
 								/>
 							</svg>
 							<p class="font-semibold text-3xl">
-								{{ scenes[displaySlide()].range }}km
+								{{ slide.range }}km
 							</p>
 						</div>
 						<p class="text-sm opacity-80">With one single charge</p>
@@ -122,8 +124,7 @@ import { scenes, slide } from "./state";
 })
 export class Overlay {
 	scenes = scenes;
-	slide = slide;
-	displaySlide = signal(this.slide());
+	displaySlide = signal(slide());
 	visible = signal(false);
 
 	constructor() {
@@ -135,7 +136,7 @@ export class Overlay {
 
 		effect(
 			() => {
-				const currentSlide = this.slide();
+				const currentSlide = slide();
 				this.visible.set(false);
 				setTimeout(() => {
 					this.displaySlide.set(currentSlide);

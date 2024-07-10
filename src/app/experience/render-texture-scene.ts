@@ -5,7 +5,7 @@ import {
 	CUSTOM_ELEMENTS_SCHEMA,
 	input,
 } from "@angular/core";
-import { NgtArgs, pick } from "angular-three";
+import { NgtArgs } from "angular-three";
 import { NgtsPerspectiveCamera } from "angular-three-soba/cameras";
 import { NgtsOrbitControls } from "angular-three-soba/controls";
 import { injectGLTF } from "angular-three-soba/loaders";
@@ -30,8 +30,11 @@ const ratioScale = Math.min(1.2, Math.max(0.5, window.innerWidth / 1920));
 	selector: "app-render-texture-scene",
 	standalone: true,
 	template: `
+		@let name = scene().name;
+		@let mainColor = scene().mainColor;
+		
 		<ngt-color *args="['#ffffff']" attach="background" />
-		<ngt-group [name]="name()" [dispose]="null">
+		<ngt-group [name]="name" [dispose]="null">
 			<ngts-perspective-camera
 				[options]="{ makeDefault: true, position: [3, 3, 8], near: 0.5 }"
 			/>
@@ -83,7 +86,7 @@ const ratioScale = Math.min(1.2, Math.max(0.5, window.innerWidth / 1920));
 					<ngt-mesh [scale]="15">
 						<ngt-sphere-geometry />
 						<ngt-mesh-basic-material
-							[color]="scene().mainColor"
+							[color]="mainColor"
 							[side]="BackSide"
 						/>
 					</ngt-mesh>
@@ -152,8 +155,6 @@ export class RenderTextureScene {
 	ratioScale = ratioScale;
 
 	scene = input.required<ShowroomScene>();
-
-	name = pick(this.scene, "name");
 
 	private gltf = injectGLTF(() => this.scene().path);
 	model = computed(() => {
