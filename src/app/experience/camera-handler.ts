@@ -36,7 +36,7 @@ export class CameraHandler {
 	private cameraControlsRef = viewChild.required(NgtsCameraControls);
 
 	private lastSlide = 0;
-	private dollyDistance = 10;
+	private dollyDistance = 20;
 
 	constructor() {
 		const autoEffect = injectAutoEffect();

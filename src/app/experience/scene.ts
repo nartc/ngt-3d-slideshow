@@ -12,6 +12,7 @@ import {
 	NgtArgs,
 } from "angular-three";
 import { NgtsGrid } from "angular-three-soba/abstractions";
+import { NgtsMeshWobbleMaterial } from "angular-three-soba/materials";
 import {
 	NgtsEnvironment,
 	NgtsRenderTexture,
@@ -38,8 +39,8 @@ extend(THREE);
 		<!-- MAIN WORLD-->
 		<ngt-group>
 			<ngt-mesh #sphere [position]="[0, viewport().height / 2 + 1.5, 0]">
-				<ngt-sphere-geometry *args="[1, 32, 32]" />
-				<ngt-mesh-toon-material [color]="scenes[0].mainColor" />
+				<ngt-torus-geometry *args="[0.75, 0.2]" />
+				<ngts-mesh-wobble-material [options]="{ color: scenes[0].mainColor }" />
 			</ngt-mesh>
 
 			<ngt-mesh
@@ -51,7 +52,7 @@ extend(THREE);
 				]"
 			>
 				<ngt-box-geometry />
-				<ngt-mesh-toon-material [color]="scenes[1].mainColor" />
+				<ngts-mesh-wobble-material [options]="{ color: scenes[1].mainColor }" />
 			</ngt-mesh>
 
 			<ngt-mesh
@@ -63,7 +64,7 @@ extend(THREE);
 				]"
 			>
 				<ngt-dodecahedron-geometry />
-				<ngt-mesh-toon-material [color]="scenes[2].mainColor" />
+				<ngts-mesh-wobble-material [options]="{ color: scenes[2].mainColor }" />
 			</ngt-mesh>
 		</ngt-group>
 
@@ -107,6 +108,7 @@ extend(THREE);
 		NgtsRenderTexture,
 		NgtsRenderTextureContent,
 		RenderTextureScene,
+		NgtsMeshWobbleMaterial,
 	],
 })
 export class Scene {

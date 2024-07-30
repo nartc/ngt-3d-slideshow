@@ -32,7 +32,7 @@ const ratioScale = Math.min(1.2, Math.max(0.5, window.innerWidth / 1920));
 	template: `
 		@let name = scene().name;
 		@let mainColor = scene().mainColor;
-		
+
 		<ngt-color *args="['#ffffff']" attach="background" />
 		<ngt-group [name]="name" [dispose]="null">
 			<ngts-perspective-camera
@@ -55,7 +55,7 @@ const ratioScale = Math.min(1.2, Math.max(0.5, window.innerWidth / 1920));
 			<ngts-accumulative-shadows
 				[options]="{
 					frames: 100,
-					alphaTest: 0.9,
+					alphaTest: 0.75,
 					scale: 30,
 					position: [0, -0.005, 0],
 					color: 'pink',
@@ -85,10 +85,7 @@ const ratioScale = Math.min(1.2, Math.max(0.5, window.innerWidth / 1920));
 				<ng-template>
 					<ngt-mesh [scale]="15">
 						<ngt-sphere-geometry />
-						<ngt-mesh-basic-material
-							[color]="mainColor"
-							[side]="BackSide"
-						/>
+						<ngt-mesh-basic-material [color]="mainColor" [side]="BackSide" />
 					</ngt-mesh>
 
 					<ngts-lightformer
